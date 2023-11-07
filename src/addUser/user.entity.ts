@@ -5,20 +5,26 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
-@Entity('users')
-export class User {
+@Entity('home')
+export class Home {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column()
-  name: string;
+  service: string;
 
   @Column()
-  email: string;
+  customer: string;
 
   @Column()
-  password: string;
+  address: string;
+
+  @Column()
+  billing: string;
+
+  @Column()
+  issue: string;
 
   @CreateDateColumn({ type: 'timestamp' })
-  createdAt: Date;
+  activationDate: Date;
 }

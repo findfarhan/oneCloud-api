@@ -1,5 +1,5 @@
 // registration.dto.ts
-import { IsNotEmpty, IsString, IsEmail, Length } from 'class-validator';
+import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 
 export class RegistrationDto {
   @IsNotEmpty()

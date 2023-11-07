@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, ValidationPipe, BadRequestException, HttpCode, HttpStatus } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegistrationDto, LoginDto } from './dto';
 import { User } from './auth.entity';
@@ -7,13 +7,31 @@ import { User } from './auth.entity';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
+  @HttpCode(HttpStatus.OK)
   @Post('login')
+  @UsePipes(ValidationPipe)
   async login(@Body() loginDto: LoginDto): Promise<User | null> {
-    return this.authService.login(loginDto);
+    try {
+      const user = await this.authService.login(loginDto);
+
+      if (!user) {
+        throw new BadRequestException('Invalid email or password'); // Custom error message
+      }
+
+      return user;
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
+  @HttpCode(HttpStatus.OK)
   @Post('register')
+  @UsePipes(ValidationPipe)
   async register(@Body() registrationDto: RegistrationDto): Promise<User> {
-    return this.authService.register(registrationDto);
+    try {
+      return await this.authService.register(registrationDto);
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 }
