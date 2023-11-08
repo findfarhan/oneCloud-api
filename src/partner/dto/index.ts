@@ -1,0 +1,1 @@
+export {AddPartnerDto} from './partner.dto'

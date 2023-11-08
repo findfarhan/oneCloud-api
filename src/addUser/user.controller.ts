@@ -10,7 +10,7 @@ export class HomeController {
 
   @Post('add')
   @UsePipes(ValidationPipe)
-  // @UseGuards(AuthGuard) 
+  @UseGuards(AuthGuard) 
   async add(@Body() addUserDto: AddUserDto): Promise<Home | null> {
     try {
       const user = await this.homeService.add(addUserDto);

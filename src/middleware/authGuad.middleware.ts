@@ -1,46 +1,43 @@
-import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  CanActivate,
+  ExecutionContext,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { MiddlewareConfig } from './midddleware.config';
-import { IncomingHttpHeaders } from 'http';
+import { Request } from 'express';
+import { AuthConfig } from 'src/auth/auth.config';
+
+
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-  constructor(private jwtService: JwtService) {}
+  constructor(private jwtService: JwtService,private authConfig : AuthConfig) {}
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const request = context.switchToHttp().getRequest();
-
-    if (!request || !('headers' in request)) {
-      throw new UnauthorizedException('Unauthorized');
-    }
-
-    const headers = request.headers as IncomingHttpHeaders;
-
-    if (!headers.authorization) {
-      throw new UnauthorizedException('Unauthorized');
-    }
-
-    const token = this.extractTokenFromHeader(headers.authorization);
-
+    const token = this.extractTokenFromHeader(request);
     if (!token) {
-      throw new UnauthorizedException('Unauthorized');
+      throw new UnauthorizedException();
     }
-
     try {
-      const payload = await this.jwtService.verifyAsync(token, {
-        secret: MiddlewareConfig.jwt_secret
-      });
-      request.user = payload;
-      return true;
-    } catch (error) {
-      throw new UnauthorizedException('Unauthorized');
+      const payload = await this.jwtService.verifyAsync(
+        token,
+        {
+          secret: this.authConfig.jwt_secret
+        }
+      );
+      // 💡 We're assigning the payload to the request object here
+      // so that we can access it in our route handlers
+      request['users'] = payload;
+    } catch {
+      throw new UnauthorizedException();
     }
+    return true;
   }
 
-  private extractTokenFromHeader(authorizationHeader: string): string | undefined {
-    if (authorizationHeader && authorizationHeader.startsWith('Bearer ')) {
-      return authorizationHeader.substring(7); // Remove 'Bearer ' prefix
-    }
-    return undefined;
+  private extractTokenFromHeader(request: Request): string | undefined {
+    const [type, token] = request.headers.authorization?.split(' ') ?? [];
+    return type === 'Bearer' ? token : undefined;
   }
 }

@@ -13,7 +13,7 @@ export class JwtAuthService {
   async generateToken(user: User): Promise<string> {
     const payload = { sub: user.id, name: user.email };
     const options = {
-      expiresIn: '1h', 
+      expiresIn: '7d', 
       secret: this.authConfig.jwt_secret, 
     };
 

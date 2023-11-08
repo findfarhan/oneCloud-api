@@ -11,5 +11,6 @@ import { AuthConfig } from './auth.config';
   imports: [TypeOrmModule.forFeature([User])],
   controllers: [AuthController],
   providers: [AuthService, JwtAuthService, JwtService, AuthConfig], 
+  exports:[AuthConfig]
 })
 export class AuthModule {}

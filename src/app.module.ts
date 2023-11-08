@@ -10,6 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthModule } from './auth/auth.module';
 import DatabaseModule from './database/database.module';
 import { HomeModule } from './addUser/user.module';
+import { PartnerModule } from './partner/partner.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -46,7 +47,9 @@ console.log('envsFilePath', envFilePath);
       inject: [ConfigService],
     }),
     DatabaseModule,
-    HomeModule
+    AuthModule,
+    HomeModule,
+    PartnerModule
   ],
   controllers: [AppController],
   providers: [AppService],
