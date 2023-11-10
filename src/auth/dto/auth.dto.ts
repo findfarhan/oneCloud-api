@@ -14,6 +14,10 @@ export class RegistrationDto {
   @IsNotEmpty()
   @IsString()
   password: string;
+
+  @IsNotEmpty()
+  @IsString()
+  role: string;
 }
 
 export class LoginDto {

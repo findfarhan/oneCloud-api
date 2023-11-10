@@ -20,7 +20,7 @@ export class AuthService {
   async register(
     registrationDto: RegistrationDto,
   ): Promise<any> {
-    const { email, password, name } = registrationDto;
+    const { email, password, name,role } = registrationDto;
 
     const existingUser = await this.userRepository.findOne({
       where: { email },
@@ -37,6 +37,7 @@ export class AuthService {
       name,
       email,
       password: hashedPassword,
+      role
     });
 
     // Save the new user

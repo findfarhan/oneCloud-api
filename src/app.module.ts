@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import DatabaseModule from './database/database.module';
 import { HomeModule } from './addUser/user.module';
 import { PartnerModule } from './partner/partner.module';
+import { UserListModule } from './userList/userList.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -49,7 +50,8 @@ console.log('envsFilePath', envFilePath);
     DatabaseModule,
     AuthModule,
     HomeModule,
-    PartnerModule
+    PartnerModule,
+    UserListModule
   ],
   controllers: [AppController],
   providers: [AppService],
