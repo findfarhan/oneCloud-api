@@ -12,6 +12,9 @@ import DatabaseModule from './database/database.module';
 import { HomeModule } from './addUser/user.module';
 import { PartnerModule } from './partner/partner.module';
 import { UserListModule } from './userList/userList.module';
+import { NetMapModule } from './netMap/netMap.module';
+import { PassiveInvoiceModule } from './passiveInvoice/passiveInvoice.module';
+import { ProviderModule } from './providers/provider.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -51,7 +54,10 @@ console.log('envsFilePath', envFilePath);
     AuthModule,
     HomeModule,
     PartnerModule,
-    UserListModule
+    UserListModule,
+    NetMapModule,
+    PassiveInvoiceModule,
+    ProviderModule
   ],
   controllers: [AppController],
   providers: [AppService],

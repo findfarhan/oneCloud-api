@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UsePipes, ValidationPipe, BadRequestException, HttpCode, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, UsePipes, ValidationPipe, BadRequestException, HttpCode, HttpStatus, Get, Param, NotFoundException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { RegistrationDto, LoginDto } from './dto';
 import { User } from './auth.entity';
@@ -22,6 +22,14 @@ export class AuthController {
     } catch (error) {
       throw new BadRequestException(error.message);
     }
+  }
+  @Get('exists/:email')
+  async checkUserExists(@Param('email') email: string): Promise<boolean> {
+    const userExists = await this.authService.checkIfUserExists(email);
+    if (!userExists) {
+      throw new BadRequestException('User with this email already exist');
+    }
+    return true;
   }
 
   @HttpCode(HttpStatus.OK)

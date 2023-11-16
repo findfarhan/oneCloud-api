@@ -17,19 +17,21 @@ export class AuthService {
     private readonly userRepository: Repository<User>,
   ) {}
 
+  async checkIfUserExists(email: string): Promise<boolean> {
+    const existingUser = await this.userRepository.findOne({ where: { email } });
+    return !!existingUser; // Returns true if user exists, false otherwise
+  }
+
   async register(
     registrationDto: RegistrationDto,
   ): Promise<any> {
     const { email, password, name,role } = registrationDto;
 
-    const existingUser = await this.userRepository.findOne({
-      where: { email },
-    });
-    if (existingUser) {
+    const userExists = await this.checkIfUserExists(email);
+    if (userExists) {
       throw new ConflictException('User with this email already exists');
     }
 
-    // Hash the user's password before saving it
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
