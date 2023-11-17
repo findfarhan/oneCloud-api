@@ -15,6 +15,8 @@ import { UserListModule } from './userList/userList.module';
 import { NetMapModule } from './netMap/netMap.module';
 import { PassiveInvoiceModule } from './passiveInvoice/passiveInvoice.module';
 import { ProviderModule } from './providers/provider.module';
+import { ClientModule } from './client/client.module';
+import { TicketModule } from './ticketManagment/ticket.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -57,7 +59,9 @@ console.log('envsFilePath', envFilePath);
     UserListModule,
     NetMapModule,
     PassiveInvoiceModule,
-    ProviderModule
+    ProviderModule,
+    ClientModule,
+    TicketModule
   ],
   controllers: [AppController],
   providers: [AppService],

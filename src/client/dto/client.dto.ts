@@ -6,30 +6,26 @@ import {
   IsString,
 } from 'class-validator';
 
-export class ProviderDto {
+export class ClientDto {
   @IsNotEmpty()
   @IsString()
-  supplierType: string;
+  customerType: string;
 
   @IsNotEmpty()
   @IsString()
-  businessName: string;
+  billingGroup: string;
 
   @IsNotEmpty()
   @IsString()
-  vatNumber: string;
+  surname: string;
 
   @IsNotEmpty()
   @IsString()
-  attorney: string;
+  firstName: string;
 
   @IsNotEmpty()
   @IsString()
-  representativeTaxCode: string;
-
-  @IsNotEmpty()
-  @IsString()
-  taxIdCode: string;
+  taxIDcode: string;
 
   @IsNotEmpty()
   @IsString()
@@ -38,6 +34,10 @@ export class ProviderDto {
   @IsNotEmpty()
   @IsNumber()
   number: number;
+
+  @IsNotEmpty()
+  @IsString()
+  technicalDepartmentEmail:string
 
   @IsNotEmpty()
   @IsString()
@@ -50,6 +50,10 @@ export class ProviderDto {
 
   @IsNotEmpty()
   @IsNumber()
+  sDICode: number;
+
+  @IsNotEmpty()
+  @IsNumber()
   mobilePhone: number;
 
   @IsNotEmpty()
@@ -57,12 +61,16 @@ export class ProviderDto {
   landlinePhone: number;
 
   @IsNotEmpty()
-  @IsString()
-  emailNOC: string;
+  @IsBoolean()
+  invoiceViaEmail: boolean;
 
   @IsNotEmpty()
   @IsBoolean()
-  enableTicketSending: boolean;
+  paperInvoice: boolean;
+
+  @IsNotEmpty()
+  @IsString()
+  note: string;
 
   @IsNotEmpty()
   @IsString()
@@ -86,12 +94,27 @@ export class ProviderDto {
 
   @IsNotEmpty()
   @IsString()
+  nation: string;
+
+  @IsNotEmpty()
+  @IsString()
   payment: string;
 
   @IsNotEmpty()
   @IsString()
   iBAN: string;
 
+  @IsNotEmpty()
+  @IsString()
+  bICCode: string;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  differentBillingAddress: boolean;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  disableUnpaidInvoiceChecking: boolean;
 
 
 }
