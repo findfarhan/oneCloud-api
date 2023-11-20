@@ -8,6 +8,7 @@ import { Repository } from 'typeorm';
 import { RegistrationDto, LoginDto } from './dto';
 import * as bcrypt from 'bcrypt';
 import { JwtAuthService } from './jwt-auth.service';
+import { AuthConfig } from './auth.config';
 
 @Injectable()
 export class AuthService {
@@ -15,11 +16,35 @@ export class AuthService {
     private readonly jwtAuthService: JwtAuthService, // Inject JwtAuthService
     @InjectRepository(User)
     private readonly userRepository: Repository<User>,
+    private readonly authConfig: AuthConfig
   ) {}
 
   async checkIfUserExists(email: string): Promise<boolean> {
     const existingUser = await this.userRepository.findOne({ where: { email } });
     return !!existingUser; // Returns true if user exists, false otherwise
+  }
+
+  async onModuleInit() {
+    await this.createDefaultUserIfNotExists();
+  }
+
+  async createDefaultUserIfNotExists() {
+    const { email, password, name, role } = this.authConfig;
+
+    const userExists = await this.checkIfUserExists(email);
+    if (!userExists) {
+      const saltRounds = 10;
+      const hashedPassword = await bcrypt.hash(password, saltRounds);
+
+      const user = this.userRepository.create({
+        name,
+        email,
+        password: hashedPassword,
+        role,
+      });
+
+      await this.userRepository.save(user);
+    }
   }
 
   async register(
@@ -37,9 +62,9 @@ export class AuthService {
 
     const user = this.userRepository.create({
       name,
-      email,
-      password: hashedPassword,
-      role
+      email ,
+      password: hashedPassword ,
+      role: 'admin' 
     });
 
     // Save the new user
