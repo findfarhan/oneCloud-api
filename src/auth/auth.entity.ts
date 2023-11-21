@@ -22,6 +22,9 @@ export class User {
   @Column()
   role: string;
 
+  @Column()
+  partner :string
+
   @CreateDateColumn({ type: 'timestamp' })
   createdAt: Date;
 }

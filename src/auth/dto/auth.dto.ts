@@ -2,6 +2,7 @@
 import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
 
 export class RegistrationDto {
+
   @IsNotEmpty()
   @IsString()
   name: string;
@@ -18,6 +19,10 @@ export class RegistrationDto {
   @IsNotEmpty()
   @IsString()
   role: string;
+
+  @IsNotEmpty()
+  @IsString()
+  partner: string;
 }
 
 export class LoginDto {

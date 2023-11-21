@@ -8,4 +8,5 @@ export class AuthConfig {
   public email: string = process.env.EMAIl;
   public password: string = process.env.PASSWORD;
   public role :string = process.env.ROLE
+  public partner :string = process.env.PARTNER
 }
