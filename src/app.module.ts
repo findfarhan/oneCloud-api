@@ -17,6 +17,7 @@ import { PassiveInvoiceModule } from './passiveInvoice/passiveInvoice.module';
 import { ProviderModule } from './providers/provider.module';
 import { ClientModule } from './client/client.module';
 import { TicketModule } from './ticketManagment/ticket.module';
+import { IpListModule } from './ipList/ipList.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -61,32 +62,15 @@ console.log('envsFilePath', envFilePath);
     PassiveInvoiceModule,
     ProviderModule,
     ClientModule,
-    TicketModule
+    TicketModule,
+    IpListModule
   ],
   controllers: [AppController],
   providers: [AppService],
 })
 export class AppModule {
   constructor(configService: ConfigService) {
-    console.log(
-      'DATABASE_HOST:',
-      configService.get('DATABASE_HOST'),
-    );
-    console.log(
-      'DATABASE_NAME:',
-      configService.get('DATABASE_NAME'),
-    );
-    console.log(
-      'DATABASE_USER:',
-      configService.get('DATABASE_USER'),
-    );
-    console.log(
-      'DATABASE_PASSWORD:',
-      configService.get('DATABASE_PASSWORD'),
-    );
-    console.log(
-      'DATABASE_PORT:',
-      configService.get('DATABASE_PORT'),
-    );
+
+ 
   }
 }

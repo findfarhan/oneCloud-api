@@ -1,0 +1,1 @@
+export {IpListDto} from './ipList.dto'
