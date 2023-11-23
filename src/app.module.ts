@@ -18,6 +18,10 @@ import { ProviderModule } from './providers/provider.module';
 import { ClientModule } from './client/client.module';
 import { TicketModule } from './ticketManagment/ticket.module';
 import { IpListModule } from './ipList/ipList.module';
+import { CondominiumsModule } from './condominiums/condominiums.module';
+import { KnotsModule } from './knots/knots.module';
+import { NASModule } from './nas/nas.module';
+import { AccessPointModule } from './accesspoint/accessPoint.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -63,7 +67,11 @@ console.log('envsFilePath', envFilePath);
     ProviderModule,
     ClientModule,
     TicketModule,
-    IpListModule
+    IpListModule,
+    AccessPointModule,
+    CondominiumsModule,
+    KnotsModule,
+    NASModule
   ],
   controllers: [AppController],
   providers: [AppService],

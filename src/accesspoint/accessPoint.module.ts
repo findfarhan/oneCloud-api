@@ -15,4 +15,4 @@ import { AuthConfig } from 'src/auth/auth.config';
   providers: [AccessPointService, AuthGuard,AuthConfig,JwtService],
   exports: [AccessPointService],
 })
-export class IpListModule {}
+export class AccessPointModule {}

@@ -15,7 +15,12 @@ import { AccessPointDto } from './dto';
 import { AccessPoint } from './accessPoint.entity';
 import { AuthGuard } from 'src/middleware/authGuad.middleware';
 
-@Controller('ip')
+interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
+@Controller('accessPoint')
 export class AccessPointController {
   constructor(
     private accessPointService: AccessPointService,
@@ -26,13 +31,13 @@ export class AccessPointController {
   @UseGuards(AuthGuard)
   async add(
     @Body() accessPointDto: AccessPointDto,
-  ): Promise<AccessPoint | null> {
+  ): Promise<ApiResponse<AccessPoint>>  {
     try {
       const user = await this.accessPointService.add(
         accessPointDto,
       );
 
-      return user;
+      return { message: 'AccessPoint added successfully', data: user };
     } catch (error) {
       throw new BadRequestException(
         error.message,
@@ -46,7 +51,7 @@ export class AccessPointController {
   async update(
     @Param('id') id: string, 
     @Body() accessPointDto: AccessPointDto, 
-  ): Promise<AccessPoint | null> {
+  ): Promise<ApiResponse<AccessPoint>>  {
     try {
       const AccessPoint =
         await this.accessPointService.update(
@@ -58,8 +63,10 @@ export class AccessPointController {
           `AccessPoint with ID ${id} not found.`,
         );
       }
-      return AccessPoint;
-    } catch (error) {
+      return {
+        message: 'AccessPoint updated successfully',
+        data: AccessPoint,
+      };    } catch (error) {
       throw new BadRequestException(
         error.message,
       );

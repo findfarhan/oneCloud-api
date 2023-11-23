@@ -1,0 +1,1 @@
+export {CondominiumsDto} from './condominiums.dto'

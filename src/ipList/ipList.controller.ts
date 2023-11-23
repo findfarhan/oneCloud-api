@@ -15,6 +15,11 @@ import { IpListDto } from './dto';
 import { IpList } from './ipList.entity';
 import { AuthGuard } from 'src/middleware/authGuad.middleware';
 
+interface ApiResponse<T> {
+  message: string;
+  data: T;
+}
+
 @Controller('ip')
 export class IpListController {
   constructor(
@@ -26,13 +31,10 @@ export class IpListController {
   @UseGuards(AuthGuard)
   async add(
     @Body() ipListDto: IpListDto,
-  ): Promise<IpList | null> {
+  ): Promise<ApiResponse<IpList>> {
     try {
-      const user = await this.ipListService.add(
-        ipListDto,
-      );
-
-      return user;
+      const addedIpList = await this.ipListService.add(ipListDto);
+      return { message: 'IP List added successfully', data: addedIpList };
     } catch (error) {
       throw new BadRequestException(
         error.message,
@@ -40,13 +42,14 @@ export class IpListController {
     }
   }
 
+
   @Post('update/:id') 
   @UsePipes(ValidationPipe)
   @UseGuards(AuthGuard)
   async update(
     @Param('id') id: string, 
     @Body() ipListDto: IpListDto, 
-  ): Promise<IpList | null> {
+  ): Promise<ApiResponse<IpList>> {
     try {
       const IpList =
         await this.ipListService.update(
@@ -58,7 +61,10 @@ export class IpListController {
           `IP List with ID ${id} not found.`,
         );
       }
-      return IpList;
+      return {
+        message: 'IP List updated successfully',
+        data: IpList,
+      };
     } catch (error) {
       throw new BadRequestException(
         error.message,
