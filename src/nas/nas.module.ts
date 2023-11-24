@@ -6,11 +6,13 @@ import { NASService } from './nas.service';
 import {  JwtService } from '@nestjs/jwt';
 import { AuthGuard } from 'src/middleware/authGuad.middleware';
 import { AuthConfig } from 'src/auth/auth.config';
+import { Knots } from 'src/knots/knots.entity';
+
 
 @Module({
-    imports: [
-        TypeOrmModule.forFeature([NAS]),
-      ],
+  imports: [
+    TypeOrmModule.forFeature([NAS, Knots]), 
+  ],
   controllers: [NASController],
   providers: [NASService, AuthGuard,AuthConfig,JwtService],
   exports: [NASService],
