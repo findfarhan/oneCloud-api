@@ -1,0 +1,1 @@
+export {EditoProfileDto} from './editorProfile.dto'

@@ -1,0 +1,1 @@
+export {MorRatesDto} from './morRates.dto'

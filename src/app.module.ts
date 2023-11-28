@@ -22,6 +22,11 @@ import { CondominiumsModule } from './condominiums/condominiums.module';
 import { KnotsModule } from './knots/knots.module';
 import { NASModule } from './nas/nas.module';
 import { AccessPointModule } from './accesspoint/accessPoint.module';
+import { EditorProfileModule } from './editorProfile/editorProfile.module';
+import { MorRatesModule } from './morRates/morRates.module';
+import { PaymentMethodModule } from './paymentMethod/paymentMethod.module';
+import { BilligGroupModule } from './billingGroup/billingGroup.module';
+import { RateModule } from './rate/rate.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -71,7 +76,12 @@ console.log('envsFilePath', envFilePath);
     AccessPointModule,
     CondominiumsModule,
     KnotsModule,
-    NASModule
+    NASModule,
+    EditorProfileModule,
+    MorRatesModule,
+    PaymentMethodModule,
+    BilligGroupModule,
+    RateModule
   ],
   controllers: [AppController],
   providers: [AppService],
