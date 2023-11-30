@@ -23,15 +23,8 @@ export class CondominiumsDto {
 
   @IsNotEmpty()
   @IsString()
-  ap: string;
+  accessPoint: string;
 
-  @IsNotEmpty()
-  @IsString()
-  node: string;
-
-  @IsNotEmpty()
-  @IsString()
-  client: string;
 
 }
 

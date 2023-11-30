@@ -23,9 +23,8 @@ export class CondominiumsService {
       firstName,
       address,
       referent,
-      ap,
-      node,
-      client
+      accessPoint,
+  
           
 
     } = condominiumsDto;
@@ -35,9 +34,8 @@ export class CondominiumsService {
         firstName,
         address,
         referent,
-        ap,
-        node,
-        client
+        accessPoint,
+    
 
     });
 
@@ -59,9 +57,7 @@ export class CondominiumsService {
     Condominiums.firstName = condominiumsDto.firstName;
     Condominiums.address = condominiumsDto.address;
     Condominiums.referent = condominiumsDto.referent;
-    Condominiums.ap = condominiumsDto.ap;
-    Condominiums.node = condominiumsDto.node;
-    Condominiums.client = condominiumsDto.client;
+    Condominiums.accessPoint = condominiumsDto.accessPoint;
 
 
     const updatedCondominiums = await this.userRepository.save(Condominiums);

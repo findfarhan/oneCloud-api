@@ -23,13 +23,7 @@ import {
     referent: string;
 
     @Column()
-    ap: string;
-
-    @Column()
-    node: string;
-
-    @Column()
-    client:string
+    accessPoint: string;
 
 
     @CreateDateColumn({ type: 'timestamp' })
