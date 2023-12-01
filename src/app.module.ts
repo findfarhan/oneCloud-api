@@ -27,6 +27,7 @@ import { MorRatesModule } from './morRates/morRates.module';
 import { PaymentMethodModule } from './paymentMethod/paymentMethod.module';
 import { BilligGroupModule } from './billingGroup/billingGroup.module';
 import { RateModule } from './rate/rate.module';
+import { InventionGridModule } from './inventionGrid/inventionGrid.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -81,7 +82,8 @@ console.log('envsFilePath', envFilePath);
     MorRatesModule,
     PaymentMethodModule,
     BilligGroupModule,
-    RateModule
+    RateModule,
+    InventionGridModule
   ],
   controllers: [AppController],
   providers: [AppService],

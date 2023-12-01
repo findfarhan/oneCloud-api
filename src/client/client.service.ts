@@ -45,7 +45,8 @@ export class ClientService {
       iBAN,
       bICCode,
       differentBillingAddress,
-      disableUnpaidInvoiceChecking
+      disableUnpaidInvoiceChecking,
+      status
 
     } = clientDto;
 
@@ -76,7 +77,8 @@ export class ClientService {
       iBAN,
       bICCode,
       differentBillingAddress,
-      disableUnpaidInvoiceChecking
+      disableUnpaidInvoiceChecking,
+      status
 
     });
 
@@ -121,6 +123,7 @@ export class ClientService {
     client.bICCode = clientDto.bICCode;
     client.differentBillingAddress = clientDto.differentBillingAddress;
     client.disableUnpaidInvoiceChecking = clientDto.disableUnpaidInvoiceChecking;
+    client.status = clientDto.status;
 
 
 

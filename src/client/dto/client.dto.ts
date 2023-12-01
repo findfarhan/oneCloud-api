@@ -116,6 +116,9 @@ export class ClientDto {
   @IsBoolean()
   disableUnpaidInvoiceChecking: boolean;
 
+  @IsNotEmpty()
+  @IsString()
+  status: string;
 
 }
 

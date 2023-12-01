@@ -91,6 +91,9 @@ export class Client {
   @Column()
   disableUnpaidInvoiceChecking: boolean;
 
+  @Column()
+  status: string;
+
   @CreateDateColumn({ type: 'timestamp' })
   activationDate: Date;
 }
