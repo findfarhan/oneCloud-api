@@ -28,6 +28,8 @@ import { PaymentMethodModule } from './paymentMethod/paymentMethod.module';
 import { BilligGroupModule } from './billingGroup/billingGroup.module';
 import { RateModule } from './rate/rate.module';
 import { InventionGridModule } from './inventionGrid/inventionGrid.module';
+import { ArticleModule } from './article/article.module';
+import { BundleModule } from './bundle/bundle.module';
 
 const envFilePath: string = getEnvPath(
   `${__dirname}/common/envs`,
@@ -83,7 +85,9 @@ console.log('envsFilePath', envFilePath);
     PaymentMethodModule,
     BilligGroupModule,
     RateModule,
-    InventionGridModule
+    InventionGridModule,
+    ArticleModule,
+    BundleModule
   ],
   controllers: [AppController],
   providers: [AppService],
