@@ -28,6 +28,9 @@ import {
     @Column()
     code:string
 
+    @Column()
+    active:boolean
+
     @CreateDateColumn({ type: 'timestamp' })
     activationDate: Date;
   }

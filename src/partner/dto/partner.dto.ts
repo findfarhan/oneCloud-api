@@ -1,4 +1,5 @@
 import {
+  IsBoolean,
   IsNotEmpty,
   IsNumber,
   IsString,
@@ -31,6 +32,10 @@ export class AddPartnerDto {
   @IsString()
   @MaxLength(3)
   code: string;
+
+  @IsNotEmpty()
+  @IsBoolean()
+  active: boolean;
 }
 
 

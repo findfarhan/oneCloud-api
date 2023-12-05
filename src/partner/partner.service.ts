@@ -25,6 +25,7 @@ export class PartnerService {
       landlineTel,
       telMobile,
       code,
+      active
     } = addPartnerDto;
 
     const user = this.userRepository.create({
@@ -34,6 +35,7 @@ export class PartnerService {
       landlineTel,
       telMobile,
       code,
+      active
     });
 
     const savedUser =
@@ -56,6 +58,8 @@ export class PartnerService {
     partner.landlineTel = addPartnerDto.landlineTel;
     partner.telMobile = addPartnerDto.telMobile;
     partner.code = addPartnerDto.code;
+    partner.active = addPartnerDto.active;
+
     
     const updatedPartner = await this.userRepository.save(partner);
     return updatedPartner;
