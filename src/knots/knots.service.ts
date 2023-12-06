@@ -74,4 +74,14 @@ export class KnotsService {
     const Knots = await this.userRepository.find();
     return Knots;
   }
+
+  async getAllFirstNames(): Promise<string[]> {
+    const allKnots = await this.userRepository.find();
+    
+    const allFirstNames = allKnots.map((knot: Knots) => knot.firstName);
+    
+    return allFirstNames;
+  }
+  
+  
 }

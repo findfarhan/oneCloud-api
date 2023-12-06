@@ -11,7 +11,7 @@ export class CondominiumsDto {
   
   @IsNotEmpty()
   @IsString()
-  firstName: string;
+  name: string;
 
   @IsNotEmpty()
   @IsString()

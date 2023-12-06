@@ -3,7 +3,6 @@ import {
     Column,
     CreateDateColumn,
     Entity,
-    ManyToOne,
     OneToMany,
     PrimaryGeneratedColumn,
   } from 'typeorm';
@@ -22,9 +21,6 @@ import {
 
     @CreateDateColumn({ type: 'timestamp' })
     activationDate: Date;
-
-    @ManyToOne(() => NAS, nas => nas.knots)
-    nas: NAS;
     
   }
   

@@ -11,7 +11,7 @@ export class AccessPointDto {
 
   @IsNotEmpty()
   @IsString()
-  firstName: string;
+  name: string;
 
   @IsNotEmpty()
   @IsString()

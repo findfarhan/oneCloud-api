@@ -97,5 +97,11 @@ export class AccessPointController {
     const AccessPoint = await this.accessPointService.getAll();
     return AccessPoint;
   }
+
+  @Get('ipAccessPoint')
+  @UseGuards(AuthGuard)
+  async getAllIpAccessPoint(): Promise<string[]> {
+    return this.accessPointService.getAllIpAccessPoint();
+  }
  
 }

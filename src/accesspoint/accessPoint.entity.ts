@@ -14,7 +14,7 @@ import {
     ipAccessPoint : string;
   
     @Column()
-    firstName: string;
+    name: string;
   
     @Column()
     nas: string;

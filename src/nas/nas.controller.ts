@@ -115,4 +115,11 @@ export class NASController {
       await this.nASService.getAll();
     return NAS;
   }
+
+  @Get('ipNas')
+  @UseGuards(AuthGuard)
+  async getAllIpNas(): Promise<string[]> {
+    return this.nASService.getAllIpNas();
+  }
+
 }

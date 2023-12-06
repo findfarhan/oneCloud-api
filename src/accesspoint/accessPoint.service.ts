@@ -20,7 +20,7 @@ export class AccessPointService {
   ): Promise<any> {
     const {
       ipAccessPoint,
-      firstName,
+      name,
       nas,
       node
 
@@ -30,7 +30,7 @@ export class AccessPointService {
 
     const user = this.userRepository.create({
       ipAccessPoint,
-      firstName,
+      name,
       nas,
       node
     });
@@ -50,7 +50,7 @@ export class AccessPointService {
     }
 
     AccessPoint.ipAccessPoint = AccessPointDto.ipAccessPoint;
-    AccessPoint.firstName = AccessPointDto.firstName;
+    AccessPoint.name = AccessPointDto.name;
     AccessPoint.nas = AccessPointDto.nas;
     AccessPoint.node = AccessPointDto.node;
   
@@ -78,5 +78,13 @@ export class AccessPointService {
   async getAll(): Promise<AccessPoint[]> {
     const AccessPoint = await this.userRepository.find();
     return AccessPoint;
+  }
+
+  async getAllIpAccessPoint(): Promise<string[]> {
+    const allAccessPoint = await this.userRepository.find();
+    
+    const allIpAccessPoint = allAccessPoint.map((accessPoint: AccessPoint) => accessPoint.ipAccessPoint);
+    
+    return allIpAccessPoint;
   }
 }

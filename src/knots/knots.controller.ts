@@ -115,4 +115,11 @@ export class KnotsController {
       await this.knotsService.getAll();
     return Knots;
   }
+
+  @Get('firstName')
+  @UseGuards(AuthGuard)
+  async getAllFirstNames(): Promise<string[]> {
+    return this.knotsService.getAllFirstNames();
+  }
+  
 }

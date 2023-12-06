@@ -14,7 +14,7 @@ import {
     ipCpe : string;
   
     @Column()
-    firstName: string;
+    name: string;
   
     @Column()
     address: string;

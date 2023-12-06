@@ -1,11 +1,8 @@
 
-import { Knots } from 'src/knots/knots.entity';
 import {
     Column,
     CreateDateColumn,
     Entity,
-    ManyToOne,
-    OneToMany,
     PrimaryGeneratedColumn,
   } from 'typeorm';
   
@@ -22,11 +19,11 @@ import {
     node : string
 
 
+
     @CreateDateColumn({ type: 'timestamp' })
     activationDate: Date;
 
-    @OneToMany(() => Knots, knots => knots.nas)
-knots: Knots[];
+
 
   }
   

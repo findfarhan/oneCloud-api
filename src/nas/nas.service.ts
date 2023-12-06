@@ -7,12 +7,15 @@ import {
 import { NAS } from './nas.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { Knots } from 'src/knots/knots.entity';
 
 @Injectable()
 export class NASService {
   constructor(
     @InjectRepository(NAS)
-    private readonly userRepository: Repository<NAS>,
+    private readonly nasRepository: Repository<NAS>,
+    @InjectRepository(Knots)
+    private readonly KnotsRepository: Repository<Knots>,
   ) {}
 
   async add(
@@ -25,7 +28,7 @@ export class NASService {
 
     } = nASDto;
 
-    const user = this.userRepository.create({
+    const user = this.nasRepository.create({
       ipNas,
       node,
 
@@ -33,14 +36,14 @@ export class NASService {
     });
 
     const savedUser =
-      await this.userRepository.save(user);
+      await this.nasRepository.save(user);
 
     return savedUser;
   }
 
   async update(id: string, nASDto: NASDto,): Promise<NAS | null> {
 
-    const NAS = await this.userRepository.findOne({ where: { id: id } });
+    const NAS = await this.nasRepository.findOne({ where: { id: id } });
 
     if (!NAS) {
       return null; 
@@ -51,7 +54,7 @@ export class NASService {
 
 
 
-    const updatedNAS = await this.userRepository.save(NAS);
+    const updatedNAS = await this.nasRepository.save(NAS);
     return updatedNAS;
     
 
@@ -59,19 +62,31 @@ export class NASService {
 
   async delete(id: string): Promise<NAS | null> {
 
-    const NAS = await this.userRepository.findOne({ where: { id: id } });
+    const NAS = await this.nasRepository.findOne({ where: { id: id } });
 
     if (!NAS) {
       return null; 
     }
     
-   await this.userRepository.remove(NAS);  
+   await this.nasRepository.remove(NAS);  
    return NAS  
 
   }
 
   async getAll(): Promise<NAS[]> {
-    const NAS = await this.userRepository.find();
+    const NAS = await this.nasRepository.find();
     return NAS;
   }
+
+  
+  async getAllIpNas(): Promise<string[]> {
+    const allNas = await this.nasRepository.find();
+    
+    const allIpNas = allNas.map((nas: NAS) => nas.ipNas);
+    
+    return allIpNas;
+  }
+
+  
+  
 }

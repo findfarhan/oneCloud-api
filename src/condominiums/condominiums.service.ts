@@ -20,7 +20,7 @@ export class CondominiumsService {
   ): Promise<any> {
     const {
       ipCpe,
-      firstName,
+      name,
       address,
       referent,
       accessPoint,
@@ -31,7 +31,7 @@ export class CondominiumsService {
 
     const user = this.userRepository.create({
       ipCpe,
-        firstName,
+        name,
         address,
         referent,
         accessPoint,
@@ -54,7 +54,7 @@ export class CondominiumsService {
     }
 
     Condominiums.ipCpe = condominiumsDto.ipCpe;
-    Condominiums.firstName = condominiumsDto.firstName;
+    Condominiums.name = condominiumsDto.name;
     Condominiums.address = condominiumsDto.address;
     Condominiums.referent = condominiumsDto.referent;
     Condominiums.accessPoint = condominiumsDto.accessPoint;
@@ -83,4 +83,6 @@ export class CondominiumsService {
     const Condominiums = await this.userRepository.find();
     return Condominiums;
   }
+
+  
 }
