@@ -21,14 +21,14 @@ export class UserListService {
     const {
       firstName,
       email,
-      partner,
+      partnerid,
       password,
     } = addUserListDto;
 
     const user = this.userRepository.create({
       firstName,
       email,
-      partner,
+      partnerid,
       password,
 
     });
@@ -49,11 +49,11 @@ export class UserListService {
 
     userList.firstName = addUserListDto.firstName;
     userList.email = addUserListDto.email;
-    userList.partner = addUserListDto.partner;
+    userList.partnerid = addUserListDto.partnerid;
     userList.password = addUserListDto.password;
     
-    const updatedPartner = await this.userRepository.save(userList);
-    return updatedPartner;
+    const updatedPartnerid = await this.userRepository.save(userList);
+    return updatedPartnerid;
     
 
   }
@@ -75,4 +75,5 @@ export class UserListService {
     const userList = await this.userRepository.find();
     return userList;
   }
+  
 }

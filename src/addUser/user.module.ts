@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Module } from '@nestjs/common';
 import { Home } from './user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';

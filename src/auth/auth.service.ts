@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   ConflictException,
   Injectable,
@@ -106,7 +107,7 @@ export class AuthService {
         savedUser,
       );
 
-    return [savedUser, token ];
+    return [savedUser, token];
   }
 
   async login(loginDto: LoginDto): Promise<any> {
@@ -133,40 +134,48 @@ export class AuthService {
     return null;
   }
 
-
-  async update(id: string, registrationDto: RegistrationDto,): Promise<User | null> {
-
-    const userList = await this.userRepository.findOne({ where: { id: id } });
+  async update(
+    id: string,
+    registrationDto: RegistrationDto,
+  ): Promise<User | null> {
+    const userList =
+      await this.userRepository.findOne({
+        where: { id: id },
+      });
 
     if (!userList) {
-      return null; 
+      return null;
     }
 
     userList.name = registrationDto.name;
     userList.email = registrationDto.email;
     userList.partner = registrationDto.partner;
-    userList.password = registrationDto.password;
-    
-    const updatedUser = await this.userRepository.save(userList);
+    // Check if a new password is provided and update it securely
+    if (registrationDto.password) {
+      const hashedPassword = await bcrypt.hash(
+        registrationDto.password,
+        10,
+      );
+      userList.password = hashedPassword;
+    }
+    const updatedUser =
+      await this.userRepository.save(userList);
     return updatedUser;
-    
-
   }
 
   async delete(id: string): Promise<User | null> {
-
-    const userList = await this.userRepository.findOne({ where: { id: id } });
+    const userList =
+      await this.userRepository.findOne({
+        where: { id: id },
+      });
 
     if (!userList) {
-      return null; 
+      return null;
     }
-    
-   await this.userRepository.remove(userList);  
-   return userList  
 
+    await this.userRepository.remove(userList);
+    return userList;
   }
-
-
 
   async getAll(): Promise<User[]> {
     const userList =

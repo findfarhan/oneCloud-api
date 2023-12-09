@@ -44,7 +44,7 @@ export class PartnerService {
     return savedUser;
   }
 
-  async update(id: string, addPartnerDto: AddPartnerDto,): Promise<Partner | null> {
+  async update(id: number, addPartnerDto: AddPartnerDto,): Promise<Partner | null> {
 
     const partner = await this.userRepository.findOne({ where: { id: id } });
 
@@ -67,7 +67,7 @@ export class PartnerService {
 
   }
 
-  async delete(id: string): Promise<Partner | null> {
+  async delete(id: number): Promise<Partner | null> {
 
     const partner = await this.userRepository.findOne({ where: { id: id } });
 

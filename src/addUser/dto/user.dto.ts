@@ -1,3 +1,5 @@
+/* eslint-disable prettier/prettier */
+// eslint-disable-next-line prettier/prettier
 // registration.dto.ts
 import { IsNotEmpty, IsString } from 'class-validator';
 

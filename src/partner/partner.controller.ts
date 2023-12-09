@@ -42,12 +42,12 @@ export class PartnerController {
     }
   }
 
-  @Post('update/:id') 
+  @Post('update/:id')
   @UsePipes(ValidationPipe)
   @UseGuards(AuthGuard)
   async update(
-    @Param('id') id: string, 
-    @Body() addPartnerDto: AddPartnerDto, 
+    @Param('id') id: number,
+    @Body() addPartnerDto: AddPartnerDto,
   ): Promise<Partner | null> {
     try {
       const partner =
@@ -68,29 +68,37 @@ export class PartnerController {
     }
   }
 
-  @Post('delete/:id') 
+  @Post('delete/:id')
   @UsePipes(ValidationPipe)
   @UseGuards(AuthGuard)
-  async delete(
-    @Param('id') id: string, 
-  ): Promise<{ message: string; deletedPartner: Partner | null }> {
+  async delete(@Param('id') id: number): Promise<{
+    message: string;
+    deletedPartner: Partner | null;
+  }> {
     try {
-      const partner = await this.partnerService.delete(id);
+      const partner =
+        await this.partnerService.delete(id);
       if (!partner) {
-        throw new NotFoundException(`Partner with ID ${id} not found.`);
+        throw new NotFoundException(
+          `Partner with ID ${id} not found.`,
+        );
       }
-      return { message: `Partner with ID ${id} has been deleted.`, deletedPartner: partner };
+      return {
+        message: `Partner with ID ${id} has been deleted.`,
+        deletedPartner: partner,
+      };
     } catch (error) {
-      throw new BadRequestException(error.message);
+      throw new BadRequestException(
+        error.message,
+      );
     }
   }
 
-
-  @Get('/') 
-  @UseGuards(AuthGuard) 
+  @Get('/')
+  @UseGuards(AuthGuard)
   async getAll(): Promise<Partner[]> {
-    const partners = await this.partnerService.getAll();
+    const partners =
+      await this.partnerService.getAll();
     return partners;
   }
- 
 }

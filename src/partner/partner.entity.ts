@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
     Column,
     CreateDateColumn,
@@ -7,8 +8,8 @@ import {
   
   @Entity('partner')
   export class Partner {
-    @PrimaryGeneratedColumn('uuid')
-    id: string;
+    @PrimaryGeneratedColumn()
+    id: number;
   
     @Column()
     businessName: string;

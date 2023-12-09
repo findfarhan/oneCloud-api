@@ -1,7 +1,9 @@
+/* eslint-disable prettier/prettier */
 import {
   IsEmail,
   IsNotEmpty,
   IsString,
+  IsUUID,
 } from 'class-validator';
 
 export class AddUserListDto {
@@ -15,8 +17,8 @@ export class AddUserListDto {
   email: string;
 
   @IsNotEmpty()
-  @IsString()
-  partner: string;
+  @IsUUID()
+  partnerid: string;
 
   @IsNotEmpty()
   @IsString()
